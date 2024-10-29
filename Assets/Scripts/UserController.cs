@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,10 @@ public class UserController : MonoBehaviour
             Debug.Log(hit.collider.gameObject.name);
             Debug.Log(hit.collider.GetComponent<Pillar>());
             if (hit.collider.GetComponentInParent<Pillar>()){
+                Pillar[] pillarsInScene = FindObjectsOfType<Pillar>();
+                for(int i=0;i<pillarsInScene.Length;i++){
+                    pillarsInScene[i].isSelected = false;
+                }
                 GameObject pillar = hit.collider.gameObject;
                 Pillar pillar_component = hit.collider.gameObject.GetComponent<Pillar>();
                 pillar_component.isSelected = true;
@@ -33,6 +38,12 @@ public class UserController : MonoBehaviour
         }
         // end of code cut from GetMouseButtonDown(0) check
     }
+
+    private T FindObjectsByType<T>()
+    {
+        throw new NotImplementedException();
+    }
+
     // Update is called once per frame
     void Update()
     {

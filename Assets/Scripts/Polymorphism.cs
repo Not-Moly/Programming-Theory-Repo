@@ -17,9 +17,6 @@ public class Polymorphism : Pillar
         {
             case 0:
                 transform.localScale += scaleFactor * Time.deltaTime * Vector3.right;
-                Debug.Log(scaleFactor);
-                Debug.Log((scaleFactor * Time.deltaTime));
-                Debug.Log(transform.localScale.x);
                 if (transform.localScale.x >= 2.0f)
                     scaleState += 1;
                 break;
