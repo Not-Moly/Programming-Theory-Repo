@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.UIElements;
 
-public abstract class Pillar : MonoBehaviour
+public abstract class Pillar : MonoBehaviour // INHERITANCE (This class pillar will be inherited from the other four pillars)
 {
     public bool isSelected = false;
+    public abstract string Description {get;}   // ENCAPSULATION
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,6 @@ public abstract class Pillar : MonoBehaviour
             Off();
         }
     }
-    protected abstract void Action();
-    protected abstract void Off();
+    protected abstract void Action();   // POLYMORPHISM
+    protected abstract void Off();      // POLYMORPHISM
 }

@@ -11,6 +11,10 @@ public class EncapsulationPillar : Pillar
     private float alpha_var;
     private bool alpha_increasing;
     private float alpha_rate = 0.5f;
+
+    // POLYMORPHISM
+    public override string Description => "Encapsulation is the practice of bundling related data into a structured unit, along with the methods used to work with that data. Most OOP languages implement encapsulation primarily through classes and the objects instantiated through those classes.";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,7 @@ public class EncapsulationPillar : Pillar
         Off();
     }
 
-    protected override void Action()
+    protected override void Action()        // POLYMORPHISM
     {
         capsule.SetActive(isSelected);
         capsule.GetComponent<Renderer>().material.color = new Color(capsule_col.r, capsule_col.g, capsule_col.b, alpha_var);
@@ -34,14 +38,13 @@ public class EncapsulationPillar : Pillar
             alpha_increasing = true;
 
     }
-    protected override void Off()
+    protected override void Off()       // POLYMORPHISM
     {
         capsule_col = capsule.GetComponent<Renderer>().material.color;
         alpha_increasing = true;
         alpha_var = 0.0f;
         if (capsule_col.a > 0.0f)
         {
-            Debug.Log(capsule_col.a);
             capsule.GetComponent<Renderer>().material.color = new Color(capsule_col.r, capsule_col.g, capsule_col.b, capsule_col.a - alpha_rate * Time.deltaTime);
         }
         else

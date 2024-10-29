@@ -11,6 +11,11 @@ public class Abstraction : Pillar
     private bool alpha_increasing;
     private float alpha_rate = 0.5f;
     private Renderer[] pillar_parts_renderer;
+
+    // POLYMORPHISM
+    public override string Description => "Abstraction involves hiding an object's implementation details and only showing the user the information that is absolutely necessary. This makes it simpler to read and maintain the code";
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +23,15 @@ public class Abstraction : Pillar
         pillar_color = GetComponentInChildren<Renderer>().material.color;
         pillar_parts_renderer = GetComponentsInChildren<Renderer>();
     }
-    void SetPillarColor(){
+    void SetPillarColor()       // ABSTRACTION
+    {
         pillar_parts_renderer = GetComponentsInChildren<Renderer>();
-        for(int i=0;i<pillar_parts_renderer.Length;i++){
+        for (int i = 0; i < pillar_parts_renderer.Length; i++)
+        {
             pillar_parts_renderer[i].material.color = new Color(pillar_color.r, pillar_color.g, pillar_color.b, alpha_var);
         }
     }
-    protected override void Action()
+    protected override void Action()        // POLYMORPHISM
     {
         SetPillarColor();
         //Debug.Log("Accionando");
@@ -38,10 +45,11 @@ public class Abstraction : Pillar
         if (alpha_var <= 0)
             alpha_increasing = true;
     }
-    protected override void Off()
+    protected override void Off()       // POLYMORPHISM
     {
         alpha_increasing = false;
-        if (pillar_parts_renderer[0].material.color.a < 1.0f){
+        if (pillar_parts_renderer[0].material.color.a < 1.0f)
+        {
             alpha_var += alpha_rate * Time.deltaTime;
             SetPillarColor();
         }
